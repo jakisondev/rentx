@@ -1,5 +1,6 @@
 import React from 'react';
 import { RectButtonProps } from 'react-native-gesture-handler';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 import GasolineSvg from '../../assets/gasoline.svg';
 import {
@@ -43,7 +44,7 @@ export function Car({ data, ...rest }: Props) {
                     </Rent>
 
                     <Type>
-                        <GasolineSvg />
+                        <GasolineSvg width={RFValue(20)} height={RFValue(20)} />
                     </Type>
                 </About>
 
