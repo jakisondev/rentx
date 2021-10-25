@@ -14,7 +14,7 @@ import {
 LocaleConfig.locales['pt-br'] = ptBR;
 LocaleConfig.defaultLocale = 'pt-br';
 
-interface MarkedDateProps {
+interface MarkedDatesProps {
     [date: string]: {
         color: string;
         textColor: string;
@@ -80,7 +80,7 @@ function Calendar({ markedDates, onDayPress }: CalendarProps) {
 
 export {
     Calendar,
-    MarkedDateProps,
+    MarkedDatesProps,
     DayProps,
     generateInterval
 }
