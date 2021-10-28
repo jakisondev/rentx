@@ -4,13 +4,11 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex-direction: row;
-
-  margin-bottom: 8px;
 `;
 
 export const IconContainer = styled.View`
   height: 56px;
-  width: 56px;
+  width: 55px;
 
   align-items: center;
   justify-content: center;

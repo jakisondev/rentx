@@ -13,6 +13,7 @@ import {
 } from './styles';
 
 import { Input } from '../../components/Input';
+import { PasswordInput } from '../../components/PasswordInput';
 
 export function SignIn() {
   const theme = useTheme();
@@ -37,7 +38,19 @@ export function SignIn() {
       </Header>
 
       <Form>
-        <Input iconName="mail"/>
+        <Input
+          iconName="mail"
+          placeholder="E-mail"
+          keyboardType="email-address"
+          autoCorrect={false}
+          autoCapitalize="none"
+        />
+
+        <PasswordInput
+          iconName="lock"
+          placeholder="Senha"
+        />
+
       </Form>
 
       <Footer>
