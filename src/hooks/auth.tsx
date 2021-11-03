@@ -42,7 +42,11 @@ function AuthProvider({ children }: AuthProviderProps) {
     async function signIn({ email, password }: SignInCredentials) {
         const response = await api.post('/sessions', { email, password });
 
-        console.log(response.data);
+        const { token, user } = response.data;
+
+        api.defaults.headers.authorization = `Bearer ${token}`;
+
+        setData({ token, user });
     }
 
     return (
