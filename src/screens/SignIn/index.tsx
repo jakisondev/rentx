@@ -12,6 +12,7 @@ import * as Yup from 'yup';
 
 import { Button } from '../../components/Button';
 import { useTheme } from 'styled-components';
+import { useAuth } from '../../hooks/auth';
 
 import {
   Container,
@@ -32,6 +33,8 @@ export function SignIn() {
   const theme = useTheme();
   const navigation = useNavigation();
 
+  const { signIn } = useAuth();
+
   async function handleSignIn() {
     try {
       const schema = Yup.object().shape({
@@ -43,7 +46,10 @@ export function SignIn() {
       });
 
       await schema.validate({ email, password });
-      navigation.navigate('Home');
+
+      signIn({ email, password });
+
+      // navigation.navigate('Home');
 
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
