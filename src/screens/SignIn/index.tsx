@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {
   StatusBar,
@@ -14,6 +14,11 @@ import { Button } from '../../components/Button';
 import { useTheme } from 'styled-components';
 import { useAuth } from '../../hooks/auth';
 
+import { Input } from '../../components/Input';
+import { PasswordInput } from '../../components/PasswordInput';
+
+import { database } from '../../database';
+
 import {
   Container,
   Header,
@@ -23,9 +28,6 @@ import {
   Footer
 } from './styles';
 
-import { Input } from '../../components/Input';
-import { PasswordInput } from '../../components/PasswordInput';
-
 export function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -34,6 +36,17 @@ export function SignIn() {
   const navigation = useNavigation();
 
   const { signIn } = useAuth();
+
+  useEffect(() => {
+    async function loadData() {
+      const userCollection = database.get('users');
+
+      const users = await userCollection.query().fetch();
+      console.log(users);
+    }
+
+    loadData();
+  }, []);
 
   async function handleSignIn() {
     try {
