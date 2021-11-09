@@ -1,32 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import {
-  StatusBar,
-  KeyboardAvoidingView,
-  TouchableWithoutFeedback,
-  Keyboard,
-  Alert
-} from 'react-native';
+import { StatusBar, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
 import * as Yup from 'yup';
 
-import { Button } from '../../components/Button';
 import { useTheme } from 'styled-components';
 import { useAuth } from '../../hooks/auth';
 
 import { Input } from '../../components/Input';
+import { Button } from '../../components/Button';
 import { PasswordInput } from '../../components/PasswordInput';
 
-import { database } from '../../database';
-
-import {
-  Container,
-  Header,
-  Title,
-  SubTitle,
-  Form,
-  Footer
-} from './styles';
+import { Container, Header, Title, SubTitle, Form, Footer } from './styles';
 
 export function SignIn() {
   const [email, setEmail] = useState('');
@@ -36,17 +21,6 @@ export function SignIn() {
   const navigation = useNavigation();
 
   const { signIn } = useAuth();
-
-  useEffect(() => {
-    async function loadData() {
-      const userCollection = database.get('users');
-
-      const users = await userCollection.query().fetch();
-      console.log(users);
-    }
-
-    loadData();
-  }, []);
 
   async function handleSignIn() {
     try {
