@@ -1,10 +1,4 @@
-import React, {
-    createContext,
-    useState,
-    useContext,
-    ReactNode,
-    useEffect
-} from 'react';
+import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 
 import { api } from '../services/api';
 import { database } from '../database';
@@ -70,8 +64,11 @@ function AuthProvider({ children }: AuthProviderProps) {
             const userCollection = database.get<ModelUser>('users');
             const response = await userCollection.query().fetch();
 
-            console.log('### USUARIO LOGADO ###');
-            console.log(response);
+            if (response.length > 0) {
+                const userData = response[0]._raw as unknown as User;
+                api.defaults.headers.authorization = `Bearer ${userData.token}`;
+                setData(userData);
+            }
         }
 
         loadUserData();
