@@ -30,7 +30,7 @@ import {
 } from './styles';
 
 export function Profile() {
-    const { user } = useAuth();
+    const { user, signOut } = useAuth();
     const theme = useTheme();
     const navigation = useNavigation();
 
@@ -40,10 +40,6 @@ export function Profile() {
     const [driverLicense, setDriverLicense] = useState(user.driver_license);
 
     function handleBack() {
-        navigation.goBack();
-    }
-
-    function handleSignOut() {
         navigation.goBack();
     }
 
@@ -75,7 +71,7 @@ export function Profile() {
                         <HeaderTop>
                             <BackButton color={theme.colors.shape} onPress={handleBack} />
                             <HeaderTitle>Editar Perfil</HeaderTitle>
-                            <LogoutButton onPress={handleSignOut} >
+                            <LogoutButton onPress={signOut} >
                                 <Feather name="power" size={24} color={theme.colors.shape} />
                             </LogoutButton>
                         </HeaderTop>
