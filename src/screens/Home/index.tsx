@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, Alert } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useNavigation } from '@react-navigation/native';
+import { useNetInfo } from '@react-native-community/netinfo';
+
 import { useTheme } from 'styled-components';
 
 import Logo from '../../assets/logo.svg';
@@ -23,6 +25,7 @@ export function Home() {
   const [cars, setCars] = useState<CarDTO[]>(new Array<CarDTO>());
   const [loading, setLoading] = useState(true);
 
+  const netInfo = useNetInfo();
   const navigation = useNavigation();
   const theme = useTheme();
 
@@ -50,6 +53,14 @@ export function Home() {
     fetchCars();
     return () => { isMounted = false; }
   }, []);
+
+  useEffect(() => {
+    if (netInfo.isConnected) {
+      Alert.alert('Você está On-line');
+    } else {
+      Alert.alert('Você está Of-line');
+    }
+  }, [netInfo.isConnected]);
 
   return (
     <Container>
