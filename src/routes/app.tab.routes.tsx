@@ -21,7 +21,6 @@ export function AppTabRoutes() {
 
     return (
         <Navigator
-            screenOptions={{ headerShown: false }}
             tabBarOptions={{
                 activeTintColor: theme.colors.main,
                 inactiveTintColor: theme.colors.text_detail,
